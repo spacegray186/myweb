@@ -13,10 +13,11 @@
   
   <!-- 사용자 정의 스타일과 자바스크립트 -->
   <!-- 주의사항 : CSS와 JS는 각 웹브라우저에서 쿠키삭제하고 확인할것 -->
-  <!-- layout.css import -->
+  <!-- layout.css import-->
   <link rel="stylesheet" href="./css/layout.css">
-  <style>
-    #clock{ width:500px; height:40px; color:blue; font-weight:bold; font-size:30px; position: relative; margin: 0 auto;}
+  <script src="./js/myscript.js"></script>
+   <style>
+    #clock{ width:500px; height:310px; line-height:310px; color:blue; font-weight:bold; font-size:30px; position: relative; margin: 0 auto;}
   </style> 
   <script>
     function showtime(){
@@ -79,10 +80,10 @@
     function killtime(){
         clearTimeout(timer); //시간해제
     }//killtime() end
-  </script>
+</script> 
 </head>
-<body onunload="killtime()">
 
+<body onunload="killtime()">
 <!-- 메인 카테고리 시작 -->
 <nav class="navbar navbar-default">
   <div class="container">
@@ -104,29 +105,30 @@
       </ul>
     </div>
   </div>
-</nav><!-- 메인카테고리 끝 -->
+</nav><!-- 메인카테고리 끝-->
 
-<!-- First Container 시작 -->
+<!-- First Container 시작-->
 <div class="container-fluid bg-1 text-center">
   <img src="./images/Ruby2.png" style="display:inline" alt="ITWILL" width="50%">
-</div><!-- First Container 끝 -->
+</div><!-- First Container 끝-->
 
 <!-- Contents 시작 -->
 <div class="container-fluid bg-3 text-center">    
   <div class="row">
     <div class="col-xs-12">
-    	<!-- 본문시작 -->
-    		본문은 여기에 작성해 주세요
-    		<div id="clock"><script>showtime();</script></div>
-    	<!-- 본문끝 -->
+    	<!-- 본문 시작 -->
+    		<!-- 디지털시계 -->
+            <div id="clock"><script>showtime();</script></div>
+    	<!-- 본문 끝 -->
     </div><!-- col 끝 -->
   </div><!-- row 끝 -->
 </div><!-- Contents 끝 -->
 
 <!-- Footer -->
 <footer class="container-fluid bg-4 text-center">
-	Copyright &copy; 2022 MYWEB
+    Copyright &copy; 2022 MYWEB
 </footer>
 
 </body>
 </html>
+    

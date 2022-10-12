@@ -13,8 +13,9 @@
   
   <!-- 사용자 정의 스타일과 자바스크립트 -->
   <!-- 주의사항 : CSS와 JS는 각 웹브라우저에서 쿠키삭제하고 확인할것 -->
-  <!-- layout.css import -->
+  <!-- layout.css import-->
   <link rel="stylesheet" href="../css/layout.css">
+  <script src="../js/myscript.js"></script>
 </head>
 <body>
 
@@ -39,7 +40,7 @@
       </ul>
     </div>
   </div>
-</nav><!-- 메인카테고리 끝 -->
+</nav><!-- 메인카테고리 끝-->
 
 <!-- Contents 시작 -->
 <div class="container-fluid bg-3 text-center">    
