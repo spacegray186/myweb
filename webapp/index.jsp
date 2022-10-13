@@ -17,7 +17,7 @@
   <link rel="stylesheet" href="./css/layout.css">
   <script src="./js/myscript.js"></script>
    <style>
-    #clock{ width:500px; height:310px; line-height:310px; color:blue; font-weight:bold; font-size:30px; position: relative; margin: 0 auto;}
+    #clock{ width:500px; height:150px; line-height:150px; color:#cb4739; font-weight:bold; font-size:30px; position: relative; margin: 0 auto;}
   </style> 
   <script>
     function showtime(){
@@ -109,7 +109,8 @@
 
 <!-- First Container 시작-->
 <div class="container-fluid bg-1 text-center">
-  <img src="./images/Ruby2.png" style="display:inline" alt="ITWILL" width="50%">
+  <img src="./images/lotto.jpg" style="display:inline" alt="money" width="50%">
+  <div class="click"><a onclick=lotto()>클릭 ▶▷▶ 무료로 랜덤번호 받기 ◀◁◀ 클릭</a></div>
 </div><!-- First Container 끝-->
 
 <!-- Contents 시작 -->
@@ -119,6 +120,7 @@
     	<!-- 본문 시작 -->
     		<!-- 디지털시계 -->
             <div id="clock"><script>showtime();</script></div>
+            <div id="sat">추첨일(토요일)에는 오후 8시 판매 마감</div>
     	<!-- 본문 끝 -->
     </div><!-- col 끝 -->
   </div><!-- row 끝 -->

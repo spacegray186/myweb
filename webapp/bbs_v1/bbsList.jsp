@@ -35,7 +35,6 @@
 			<tr>
 				<td style="text-align: left">
 <%
-
 					//답변이미지 출력
 					for(int n=1; n<=dto.getIndent(); n++){
 						out.println("<img src='../images/reply.gif'>");
@@ -43,10 +42,6 @@
 %>
 					<a href="bbsRead.jsp?bbsno=<%=dto.getBbsno()%>"><%=dto.getSubject()%></a>
 <%
-					//답변개수 제목 옆에 붙이기<<<과제/수정하기>>>
-					int replycnt=dao.replyCnt(dto);
-					out.println("("+replycnt+")");
-
 					//오늘 작성한 글제목 뒤에 new 이미지 출력
 					//작성일(regdt)에서 "년월일"만 자르기
 					String regdt=dto.getRegdt().substring(0, 10);
@@ -68,32 +63,14 @@
 		}//for end
 		
 		//글 개수
-		int totalRecord=dao.count2(col, word);
+		int totalRecord=dao.count(); 
 	    out.println("<tr>");
 	    out.println("	<td colspan='4' style='text-align:center;'>");
 	    out.println("		글 개수 : <strong> " + totalRecord +" </strong>");
 	    out.println("	</td>");
-	    out.println("</tr>");
-%>
-		<!-- 검색시작 -->
-		<tr>
-			<td colspan="4" style='text-align:center; height: 50px;'>
-				<form action="bbsList.jsp" onsubmit="return searchCheck()"><!-- myscript.js 함수 작성함 -->
-					<select name="col">
-						<option value="subject_content">제목+내용
-						<option value="subject">제목
-						<option value="content">내용
-						<option value="wname">작성자
-					</select>
-					<input type="text" name="word" id="word">
-					<input type="submit" value="검색" class="btn btn-primary">
-				</form>
-			</td>
-		</tr>
-		<!-- 검색끝 -->
-<%
+	    out.println("</tr>");		
 	}//if end
-%>
+%>	
 	</tbody>
 	</table>
 </div>
