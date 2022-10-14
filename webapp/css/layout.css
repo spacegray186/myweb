@@ -7,6 +7,7 @@ body {
   color: #f5f6f7;
 }
 p {font-size: 16px;}
+
 .margin {margin-bottom: 45px;}
 .bg-1 { 
   background-color: #faeef0; /* Green#1abc9c; */
@@ -40,7 +41,11 @@ p {font-size: 16px;}
   letter-spacing: 5px;
 }
 .navbar-nav  li a:hover {
-  color: #1abc9c !important;
+  color: #cb4739 !important;
+}
+
+tr .success{
+	background-color: #cb4739;
 }
 .click {
 	margin-top: 30px;
@@ -57,3 +62,14 @@ p {font-size: 16px;}
 }
 
 #sat {color: #3a414e;}
+
+.btn-primary {
+	color: #fff;
+    background-color: gray;
+    border-color: gray;
+}
+.btn-primary:hover, .btn-primary:active, .btn-primary:focus {
+	color: #fff;
+    background-color: black;
+    border-color: black;
+}
