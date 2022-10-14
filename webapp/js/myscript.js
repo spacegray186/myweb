@@ -54,7 +54,7 @@ function pwCheck(){
     }//if end
     
     let message="진행된 내용은 복구되지 않습니다\n계속 진행할까요?";
-    if(confirm(message)){ //확인 true, 취소 false
+    if(confirm(message)){ //확인true, 취소false
 		return true; //서버로 전송
 	}else{
 		return false
@@ -62,17 +62,34 @@ function pwCheck(){
 }//pwCheck() end
 
 
+function searchCheck(){
+	//검색어를 입력해야만 서버로 전송
+	let word=document.getElementById("word").value;
+	word=word.trim();
+	if(word.length==0){
+		alert("검색어를 입력해 주세요");
+		return false;
+	}//if end
+	
+	return true;
+}//searchCheck()end
 
+function lotto(){
+	
+	let lotto=[];
+	
+	for(let i=0; i<6; i++) {
+        lotto[i]=parseInt(Math.random()*45)+1;
+        for(let j=0; j<i; j++) {
+            if(lotto[i]==lotto[j]) { // 로또번호가 중복되었는지?
+                i--;
+                break;
+            }// if end
+        }// for end
+    }// for end
 
-
-
-
-
-
-
-
-
-
-
-
+    lotto=lotto.sort(function(a, b){return a - b}); // 오름차순 정렬
+	
+	alert(lotto);
+}//lotto() end
 
