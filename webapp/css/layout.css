@@ -9,8 +9,8 @@ body {
 p {font-size: 16px;}
 .margin {margin-bottom: 45px;}
 .bg-1 { 
-  background-color: #1abc9c; /* Green */
-  color: #ffffff;
+  background-color: #faeef0; /* Green#1abc9c; */
+  color: black;
   padding-top: 30px;
   padding-bottom: 30px;  
 }
@@ -23,7 +23,7 @@ p {font-size: 16px;}
   color: #555555;
 }
 .bg-4 { 
-  background-color: #2f2f2f; /* Black Gray */
+  background-color: #3a414e; /* Black Gray#2f2f2f */
   color: #fff;
 }
 .container-fluid {
@@ -42,3 +42,18 @@ p {font-size: 16px;}
 .navbar-nav  li a:hover {
   color: #1abc9c !important;
 }
+.click {
+	margin-top: 30px;
+}
+.click a {
+	color: #3a414e;
+	cursor: pointer;
+	animation-name: blink;
+	animation-duration: 3s;
+	animation-iteration-count: infinite;
+}
+@keyframes blink {
+  50% {opacity: 0;}
+}
+
+#sat {color: #3a414e;}
