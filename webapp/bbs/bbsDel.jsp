@@ -13,7 +13,7 @@
 	    <input type="hidden" name="bbsno" value="<%=bbsno%>">
 		<table class="table">
 		<tr>
-			<th class="success">비밀번호</th>
+			<th class="info">비밀번호</th>
 			<td><input type="password" name="passwd" id="passwd" required></td>
 		</tr>
 		<tr>
