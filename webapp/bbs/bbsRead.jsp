@@ -9,7 +9,6 @@
    &nbsp;&nbsp;
    <a href="bbsList.jsp?col=<%=col%>&word=<%=word%>&nowPage=<%=nowPage%>">[글목록]</a>
 </p>
-<div class="container">
 <%
 	int bbsno=Integer.parseInt(request.getParameter("bbsno"));
 	dto=dao.read(bbsno); 
@@ -59,8 +58,6 @@
 <%	    
 	}//if end
 %>
-</div>
-
 
 <!-- 본문끝 -->
 <%@ include file="../footer.jsp" %>
