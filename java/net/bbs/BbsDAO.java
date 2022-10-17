@@ -63,7 +63,7 @@ public class BbsDAO { //데이터베이스 관련 작업
             if(rs.next()) {
                 list=new ArrayList<>();
                 do {
-                    BbsDTO dto=new BbsDTO();//한줄 담기
+                    BbsDTO dto=new BbsDTO();//한줄담기
                     dto.setBbsno(rs.getInt("bbsno"));
                     dto.setWname(rs.getString("wname"));
                     dto.setSubject(rs.getString("subject"));
@@ -185,38 +185,41 @@ public class BbsDAO { //데이터베이스 관련 작업
             DBClose.close(con, pstmt);
         }//end
         return cnt;
-    }//delete() end
+    }//delete() end    
+    
+    
     
     public int updateproc(BbsDTO dto) {
-    	int cnt=0;
-    	try {
-    		con=dbopen.getConnection();
-    		
-    		sql=new StringBuilder();
-    		sql.append(" UPDATE tb_bbs ");
-    		sql.append(" SET wname=? ");
-    		sql.append(" , subject=? ");
-    		sql.append(" , content=? ");
-    		sql.append(" , ip=? ");
-    		sql.append(" WHERE bbsno=? AND passwd=? ");
-    		
-    		pstmt=con.prepareStatement(sql.toString());
-    		pstmt.setString(1, dto.getWname());
-    		pstmt.setString(2, dto.getSubject());
-    		pstmt.setString(3, dto.getContent());
-    		pstmt.setString(4, dto.getIp());
-    		pstmt.setInt(5, dto.getBbsno());
-    		pstmt.setString(6, dto.getPasswd());
-    		
-    		cnt=pstmt.executeUpdate();
-    		
-    	}catch (Exception e) {
-    		System.out.println("수정 실패 : " + e);
-    	}finally {
-    		DBClose.close(con, pstmt);
-    	}//end
-    	return cnt;
+        int cnt=0;
+        try {
+            con=dbopen.getConnection();
+            
+            sql=new StringBuilder();
+            sql.append(" UPDATE tb_bbs ");
+            sql.append(" SET wname=? ");
+            sql.append(" , subject=? ");
+            sql.append(" , content=? ");
+            sql.append(" , ip=? ");
+            sql.append(" WHERE bbsno=? AND passwd=? ");
+            
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setString(1, dto.getWname());
+            pstmt.setString(2, dto.getSubject());
+            pstmt.setString(3, dto.getContent());
+            pstmt.setString(4, dto.getIp());
+            pstmt.setInt(5, dto.getBbsno());
+            pstmt.setString(6, dto.getPasswd());
+            
+            cnt=pstmt.executeUpdate();
+            
+        }catch (Exception e) {
+            System.out.println("수정 실패 : " + e);
+        }finally {
+            DBClose.close(con, pstmt);
+        }//end
+        return cnt;
     }//updateproc() end
+    
     
     public int reply(BbsDTO dto) {
         int cnt=0;
@@ -273,12 +276,13 @@ public class BbsDAO { //데이터베이스 관련 작업
             cnt=pstmt.executeUpdate();
             
         }catch (Exception e) {
-            System.out.println("답변쓰기 실패:"+e);
+            System.out.println("답변쓰기 실패 : " + e);
         }finally {
             DBClose.close(con, pstmt,rs);
         }//end
         return cnt;
     }//reply() end
+    
     
     public int count2(String col, String word) {
         int cnt=0;
@@ -319,33 +323,39 @@ public class BbsDAO { //데이터베이스 관련 작업
     }//count2() end
     
     public ArrayList<BbsDTO> replyCnt() {
-    	ArrayList<BbsDTO> list=null;
+    	ArrayList<BbsDTO> replyCnt=null;
     	try {
     		con=dbopen.getConnection();
-
+    		
     		sql=new StringBuilder();
-    		sql.append(" select grpno, max(indent) ");
-    		sql.append(" from tb_bbs ");
-    		sql.append(" group by grpno ");
-
+    		sql.append(" select BB.subject, AA.reply ");
+    		sql.append(" from( ");
+			sql.append("        select grpno, count(*)-1 as reply ");
+			sql.append("        from tb_bbs ");
+			sql.append("        group by grpno ");
+			sql.append("    ) AA join tb_bbs BB ");
+			sql.append(" on AA.grpno=BB.grpno ");
+			sql.append(" where BB.indent=0 ");
+			sql.append(" order by BB.grpno desc ");
+    		
     		pstmt=con.prepareStatement(sql.toString());
     		rs=pstmt.executeQuery();
     		if(rs.next()) {
-    			list=new ArrayList<>();
+    			replyCnt=new ArrayList<>();
     			do {
     				BbsDTO dto=new BbsDTO();
-    				dto.setGrpno(rs.getInt("grpno"));
-    				dto.setIndent(rs.getInt("indent"));
-    				list.add(dto);
+    				dto.setSubject(rs.getString("subject"));
+    				dto.setReply(rs.getInt("reply"));
+    				replyCnt.add(dto);
     			}while(rs.next());
     		}//if end
-
+    		
     	}catch (Exception e) {
     		System.out.println("답변 개수 세기 실패 : " + e);
     	}finally {
     		DBClose.close(con, pstmt, rs);
     	}//end
-    	return list;
+    	return replyCnt;
     }//realyCnt() end
     
     public ArrayList<BbsDTO> list2(String col, String word){
@@ -379,7 +389,7 @@ public class BbsDAO { //데이터베이스 관련 작업
             if(rs.next()) {
                 list=new ArrayList<>();
                 do {
-                    BbsDTO dto=new BbsDTO();//한줄 담기
+                    BbsDTO dto=new BbsDTO();//한줄담기
                     dto.setBbsno(rs.getInt("bbsno"));
                     dto.setWname(rs.getString("wname"));
                     dto.setSubject(rs.getString("subject"));
@@ -391,49 +401,50 @@ public class BbsDAO { //데이터베이스 관련 작업
             }//if end
             
         }catch (Exception e) {
-            System.out.println("전체목록 실패 : " + e);
+            System.out.println("검색 목록 실패 : " + e);
         }finally {
             DBClose.close(con, pstmt, rs);
         }//end
         return list;
-    }//list2() end
+    }//list() end
     
     public ArrayList<BbsDTO> list3(String col, String word, int nowPage, int recordPerPage){
         ArrayList<BbsDTO> list=null;
         
-        //페이지당 출력할 행의 개수(10개를 기준)
-        //1 페이지 : WHERE r>=1 AND r<=10;
+        //페이지당 출력할 행의 갯수(10개를 기준)
+        //1 페이지 : WHERE r>=1  AND r<=10;
         //2 페이지 : WHERE r>=11 AND r<=20;
         //3 페이지 : WHERE r>=21 AND r<=30;
         int startRow = ((nowPage-1) * recordPerPage) + 1 ;
         int endRow   = nowPage * recordPerPage;
         
         try {
-            con=dbopen.getConnection();
+            con=dbopen.getConnection();            
             sql=new StringBuilder();
             
             word=word.trim(); //검색어 좌우 공백 제거
             
-            if(word.length()==0) { //검색하지 않는 경우	-> 6)
-            	sql.append(" SELECT * ");
-            	sql.append(" FROM ( ");
-            	sql.append(" 	SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum as r ");
-            	sql.append(" 	FROM ( ");
-            	sql.append(" 			SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-            	sql.append(" 			FROM tb_bbs ");
-            	sql.append(" 			ORDER BY grpno DESC, ansnum ASC ");
-            	sql.append(" 		) ");
-            	sql.append(" 	) ");
-            	sql.append(" WHERE r>=" +startRow+ " AND r<=" +endRow );
-            }else { //검색 하는 경우	-> 7)
-            	sql.append(" SELECT * ");
-            	sql.append(" FROM ( ");
-            	sql.append(" 		SELECT bbsno, subject, wname, readcnt, indent, regdt, rownum as r ");
-            	sql.append(" 		FROM ( ");
-            	sql.append(" 				SELECT bbsno, subject, wname, readcnt, indent, regdt ");
-            	sql.append(" 				FROM tb_bbs ");
-            	
-            	String search="";
+            if(word.length()==0) { //검색하지 않는 경우    -> 6)
+                sql.append(" SELECT * ");
+                sql.append(" FROM ( ");
+                sql.append("         SELECT bbsno,subject,wname,readcnt,indent,regdt, rownum as r ");
+                sql.append("         FROM ( ");
+                sql.append("                 SELECT bbsno,subject,wname,readcnt,indent,regdt ");
+                sql.append("                 FROM tb_bbs ");
+                sql.append("                 ORDER BY grpno DESC, ansnum ASC ");
+                sql.append("              ) ");
+                sql.append("      ) ");
+                sql.append(" WHERE r>=" + startRow + " AND r<=" + endRow) ;
+                
+            }else { //검색 하는 경우  -> 7)
+                sql.append(" SELECT * ");
+                sql.append(" FROM ( ");
+                sql.append("         SELECT bbsno,subject,wname,readcnt,indent,regdt, rownum as r ");
+                sql.append("         FROM ( ");
+                sql.append("                 SELECT bbsno,subject,wname,readcnt,indent,regdt ");
+                sql.append("                 FROM tb_bbs ");
+                
+                String search="";
                 if(col.equals("subject_content")) {
                     search += " WHERE subject LIKE '%" + word + "%' ";
                     search += " OR    content LIKE '%" + word + "%' ";
@@ -444,20 +455,21 @@ public class BbsDAO { //데이터베이스 관련 작업
                 }else if(col.equals("wname")) {
                     search += " WHERE wname LIKE '%" + word + "%' ";
                 }//if end 
-                sql.append(search);
-            	
-            	sql.append(" 				ORDER BY grpno DESC, ansnum ASC ");
-            	sql.append(" 			) ");
-            	sql.append(" 		) ");
-            	sql.append(" WHERE r>=" +startRow+ " AND r<=" +endRow );
-            }//if end
+                sql.append(search);                
+                
+                sql.append("                 ORDER BY grpno DESC, ansnum ASC ");
+                sql.append("              ) ");
+                sql.append("      ) ");
+                sql.append(" WHERE r>=" + startRow + " AND r<=" + endRow) ;
+            }//if end   
+            
             
             pstmt=con.prepareStatement(sql.toString());
             rs=pstmt.executeQuery();
             if(rs.next()) {
                 list=new ArrayList<>();
                 do {
-                    BbsDTO dto=new BbsDTO();//한줄 담기
+                    BbsDTO dto=new BbsDTO();//한줄담기
                     dto.setBbsno(rs.getInt("bbsno"));
                     dto.setWname(rs.getString("wname"));
                     dto.setSubject(rs.getString("subject"));
@@ -469,11 +481,11 @@ public class BbsDAO { //데이터베이스 관련 작업
             }//if end
             
         }catch (Exception e) {
-            System.out.println("전체목록 실패 : " + e);
+            System.out.println("목록 페이징 실패 : " + e);
         }finally {
             DBClose.close(con, pstmt, rs);
         }//end
         return list;
     }//list3() end
-    
+     
 }//class end
