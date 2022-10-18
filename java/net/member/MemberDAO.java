@@ -49,6 +49,58 @@ public class MemberDAO { //Data Access Object
         }//end
         return mlevel;
     }//loginProc() end
+    
+    public int duplecateID(String id) {
+    	int cnt=0;
+    	try {
+    		con=dbopen.getConnection();
+    		
+    		sql=new StringBuilder();
+    		sql.append(" SELECT COUNT(id) as cnt ");
+    		sql.append(" FROM member ");
+    		sql.append(" WHERE id=? ");
+    		
+    		pstmt=con.prepareStatement(sql.toString());
+    		pstmt.setString(1, id);
+    		
+    		rs=pstmt.executeQuery();
+    		if(rs.next()) {
+    			cnt=rs.getInt("cnt");
+    		}//if end
+    		
+    	}catch (Exception e) {
+    		System.out.println("아이디 중복 확인 실패 : " + e);
+    	}finally {
+    		DBClose.close(con, pstmt, rs);
+    	}//end
+    	return cnt;
+    }//duplecateID() end
+    
+    public int duplecateEmail(String email) {
+    	int cnt=0;
+    	try {
+    		con=dbopen.getConnection();
+    		
+    		sql=new StringBuilder();
+    		sql.append(" SELECT COUNT(email) as cnt ");
+    		sql.append(" FROM member ");
+    		sql.append(" WHERE email=? ");
+    		
+    		pstmt=con.prepareStatement(sql.toString());
+    		pstmt.setString(1, email);
+    		
+    		rs=pstmt.executeQuery();
+    		if(rs.next()) {
+    			cnt=rs.getInt("cnt");
+    		}//if end
+    		
+    	}catch (Exception e) {
+    		System.out.println("이메일 중복 확인 실패 : " + e);
+    	}finally {
+    		DBClose.close(con, pstmt, rs);
+    	}//end
+    	return cnt;
+    }//duplecateEmail() end
         
     
 }//class end
