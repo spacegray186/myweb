@@ -60,12 +60,15 @@ from member
 where id='user1' and passwd='12341234' and mlevel in ('A1', 'B1', 'C1', 'D1');
 
 
+-- 아이디 중복 확인
+select count(id)
+from member
+where id=?;
 
 
-
-
-
-
+-- 회원가입
+insert into member(id, passwd, mname, tel, email, zipcode, address1, address2, job, mlevel, mdate)
+values(?, ?, ?, ?, ?, ?, ?, ?, ?, 'D1', sysdate)
 
 
 
