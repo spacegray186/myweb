@@ -54,7 +54,7 @@
   <td style="text-align: left"><input type="text" name="address2" id="address2" size="45"></td>
 </tr>
 <tr>  
-  <th>직업</th>
+  <th>*직업</th>
   <td style="text-align: left">
         <select name="job"  id="job">
           <option value="0" selected>선택하세요.</option>
