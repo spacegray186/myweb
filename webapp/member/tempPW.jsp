@@ -44,6 +44,8 @@
 		content=Utility.convertChar(content);
 		String mname=request.getParameter("mname").trim();
 		String email=request.getParameter("email").trim();
+		
+		/*
 		String id=dao.findID(mname, email);
 		String tempPW=dao.tempPW(10);
 		
@@ -51,6 +53,7 @@
 		content+= id + ",";
 		content+= "<br>임시 비밀번호는";
 		content+= tempPW + "입니다";
+		*/
 		
 		//받는 사람 이메일 주소
 		InternetAddress[] address={ new InternetAddress(to) };

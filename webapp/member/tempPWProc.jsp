@@ -11,6 +11,7 @@
 		dto.setPasswd(passwd);
 		dto.setId(id);
 		
+		/*
 		int cnt=dao.updatePW(dto);
 		if(cnt==0){
 			out.println("<p>메일 보내기 실패</p>");
@@ -21,6 +22,7 @@
 	        out.println("    location.href='loginForm.jsp';");
 	        out.println("</script>");
 		}//if end
+		*/
 %>
 
 <!-- 본문 끝 -->

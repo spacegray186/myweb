@@ -1,39 +1,30 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<%@ include file="ssi.jsp" %>      
-<!DOCTYPE html>
-<html>
-<head>
-    <meta charset="UTF-8">
-    <title>findID.jsp</title>
-</head>
-<body>
-	<div style="text-align: center">
-        <h3>* 아이디/비번 찾기 *</h3>
+<%@ include file="ssi.jsp" %>
+<%@ include file="../header.jsp" %>
+<!-- 본문시작 findIDProc.jsp -->
+<h3>* 아이디/비번 찾기 결과*</h3>
 <%
-		String mname=request.getParameter("mname").trim();
-		String email=request.getParameter("email").trim();
-		String id=dao.findID(mname, email);
-		
-		//out.println("입력ID : <strong>" + id + "</strong>");
-		if(id!=null){
-		    out.println("일치하는 ID는 " + id + " 입니다");
+	String mname=request.getParameter("mname").trim();
+	String email=request.getParameter("email").trim();
+	
+	dto.setMname(mname);
+	dto.setEmail(email);	
+	
+	boolean flag =dao.findID(dto);
+	
+	if(flag==false){	    
+	    out.println("<p>이름/이메일을 다시 한번 확인해주세요!!</p>");
+	    out.println("<p><a href='javascript:history.back()'>[다시시도]</a></p>");
+	}else{
+	    String message="";
+	    message += "아이디/임시 비밀번호가 이메일로 전송되었습니다\\n";
+	    message += "임시 비밀번호는 로그인 후 회원정보수정에서 수정하시기 바랍니다";
+	    out.println("<script>");
+	    out.println("    alert('" + message + "');");
+	    out.println("    location.href='loginForm.jsp'");
+	    out.println("</script>");
+	}//if end
 %>
-		<form action="tempPW.jsp">
-			<br>
-            <input type="submit" value="임시 비밀번호 받기">
-        </form>
-        <form action="tempPWProc.jsp"></form>
-<%
-		}else{
-		    out.println("<p style='color:red'>일치하는 정보가 없습니다</p>");
-		}//if end
-%> 
-		<br>
-		<hr>
-		<a href="javascript:history.back()">[다시검색]</a>
-		&nbsp;&nbsp;
-		<a href="javascript:window.close()">[창닫기]</a>       
-    </div>
-</body>
-</html>
+<!-- 본문 끝 -->
+<%@ include file="../footer.jsp" %>
