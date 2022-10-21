@@ -7,7 +7,7 @@ function bbsCheck(){ //게시판 유효성 검사
     let wname=document.getElementById("wname").value; //작성자 가져오기
     wname=wname.trim();
     if(wname.length<2){
-        alert("작성자 2글자 이상 입력해 주세요");
+        alert("작성자를 2글자 이상 입력해 주세요");
         document.getElementById("wname").focus();//작성자칸에 커서 생성
         return false;//전송하지 않음
     }//if end    
@@ -16,7 +16,7 @@ function bbsCheck(){ //게시판 유효성 검사
 	var subject=document.getElementById("subject").value;
 	subject=subject.trim();                               
 	if(subject.length<2){
-	    alert("제목 2글자 이상 입력해 주세요");
+	    alert("제목을 2글자 이상 입력해 주세요");
     	document.getElementById("subject").focus();     
     	return false;                                 
 	}//if end
@@ -25,7 +25,7 @@ function bbsCheck(){ //게시판 유효성 검사
 	var content=document.getElementById("content").value;
 	content=content.trim();                               
 	if(content.length<2){
-	    alert("내용 2글자 이상 입력해 주세요");
+	    alert("내용을 2글자 이상 입력해 주세요");
     	document.getElementById("content").focus();    
     	return false;                                 
 	}//if end
@@ -34,7 +34,7 @@ function bbsCheck(){ //게시판 유효성 검사
     let passwd=document.getElementById("passwd").value; 
     passwd=passwd.trim();
     if(passwd.length<4 || isNaN(passwd)){
-        alert("비밀번호 4글자 이상 숫자로 입력해 주세요");
+        alert("비밀번호를 4글자 이상 숫자로 입력해 주세요");
         document.getElementById("passwd").focus();
         return false;
     }//if end
@@ -48,7 +48,7 @@ function pwCheck(){
 	let passwd=document.getElementById("passwd").value; 
     passwd=passwd.trim();
     if(passwd.length<4 || isNaN(passwd)){
-        alert("비밀번호 4글자 이상 숫자로 입력해 주세요");
+        alert("비밀번호를 4글자 이상 숫자로 입력해 주세요");
         document.getElementById("passwd").focus();
         return false;
     }//if end
@@ -98,7 +98,7 @@ function loginCheck(){ //로그인 유효성 검사 (아이디, 비번)
 	let id=document.getElementById("id").value;
 	id=id.trim();
 	if(!(id.length>=5 && id.length<=10)){
-		alert("아아디 5~10글자이내 입력해 주세요");
+		alert("아이디를 5~10글자 이내로 입력해 주세요");
 		document.getElementById("id").focus();
 		return false;		
 	}//if end
@@ -107,7 +107,7 @@ function loginCheck(){ //로그인 유효성 검사 (아이디, 비번)
 	let passwd=document.getElementById("passwd").value;
 	passwd=passwd.trim();
 	if(!(passwd.length>=5 && passwd.length<=10)){
-		alert("비밀번호 5~10글자이내 입력해 주세요");
+		alert("비밀번호를 5~10글자 이내로 입력해 주세요");
 		document.getElementById("passwd").focus();
 		return false;		
 	}//if end    
@@ -164,7 +164,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	var id=document.getElementById("id").value;
 	id=id.trim();
 	if(!(id.length>=5 && id.length<=10)){
-		alert("아아디 5~10글자이내 입력해 주세요");
+		alert("아이디를 5~10글자 이내로 입력해 주세요");
 		document.getElementById("id").focus();
 		return false;		
 	}//if end	
@@ -173,7 +173,7 @@ function memberCheck(){ //회원가입 유효성 검사
     var passwd=document.getElementById("passwd").value;
 	passwd=passwd.trim();
 	if(!(passwd.length>=5 && passwd.length<=10)){
-		alert("비밀번호 5~10글자이내 입력해 주세요");
+		alert("비밀번호를 5~10글자 이내로 입력해 주세요");
 		document.getElementById("passwd").focus();
 		return false;		
 	}//if end
@@ -191,7 +191,7 @@ function memberCheck(){ //회원가입 유효성 검사
   	var mname=document.getElementById("mname").value;
 	mname=mname.trim();
 	if(mname.length<=1){
-	    alert("이름 두글자 이상 입력해 주세요");
+	    alert("이름을 두글자 이상 입력해 주세요");
 	    document.getElementById("mname").focus();
 	    return false;
 	}//if end 
@@ -200,7 +200,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	var email=document.getElementById("email").value;
 	email=email.trim();
 	if(email.length<5){
-	    alert("이메일 5글자 이상 입력해 주세요");
+	    alert("이메일을 5글자 이상 입력해 주세요");
 	    document.getElementById("email").focus();
 	    return false;
 	}//if end
@@ -222,7 +222,7 @@ function findIDCheck(){ //아이디/비번 찾기 유효성 검사
   	var mname=document.getElementById("mname").value;
 	mname=mname.trim();
 	if(mname.length<=1){
-	    alert("이름 두글자 이상 입력해 주세요");
+	    alert("이름을 두글자 이상 입력해 주세요");
 	    document.getElementById("mname").focus();
 	    return false;
 	}//if end 
@@ -231,7 +231,7 @@ function findIDCheck(){ //아이디/비번 찾기 유효성 검사
 	var email=document.getElementById("email").value;
 	email=email.trim();
 	if(email.length<5){
-	    alert("이메일 5글자 이상 입력해 주세요");
+	    alert("이메일을 5글자 이상 입력해 주세요");
 	    document.getElementById("email").focus();
 	    return false;
 	}//if end
@@ -239,5 +239,56 @@ function findIDCheck(){ //아이디/비번 찾기 유효성 검사
 	return true;
 	
 }//findIDCheck() end
+
+function pdsCheck(){	//포토갤러리 유효성 검사
+	//1)이름
+	let wname=document.getElementById("wname").value;
+	wname=wname.trim();
+	if(wname.length<2){
+	    alert("이름을 2글자 이상 입력해 주세요");
+	    document.getElementById("wname").focus();
+	    return false;
+	}//if end
+	
+	//2)제목
+	let subject=document.getElementById("subject").value;
+	subject=subject.trim();
+	if(subject.length<2){
+	    alert("제목을 2글자 이상 입력해 주세요");
+	    document.getElementById("subject").focus();
+	    return false;
+	}//if end
+	
+	//3)비밀번호 4~15글자 이내인지?
+	let passwd=document.getElementById("passwd").value;
+	passwd=passwd.trim();
+	if(!(passwd.length>=4 && passwd.length<=15)){
+		alert("비밀번호를 4~15글자 이내로 입력해 주세요");
+		document.getElementById("passwd").focus();
+		return false;		
+	}//if end
+	
+	//4)첨부파일
+	//->파일의 확장명이 이미지 파일(png, jpg, gif)인지 확인하시오
+	let filename=document.getElementById("filename").value;	//예)sky.png
+	filename=filename.trim();
+	if(filename.length==0){
+		alert("첨부 파일을 선택하세요");
+		return false;
+	}else{
+		
+		let dot=filename.lastIndexOf(".");	//filename변수값에서 마지막 . 의 순서값
+		let ext=filename.substr(dot+1);		//확장명 : 마지막 . 이후 문자열 자르기
+		ext=ext.toLowerCase();				//확장명을 전부 소문자 치환
+		
+		if(ext=="png" || ext=="jpg" || ext=="gif"){
+			return true;
+		}else{
+			alert("이미지 파일만 업로드 가능합니다")
+			return false;
+		}//if end
+	}//if end
+	
+}//pdsCheck() end
 
 
