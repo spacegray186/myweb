@@ -8,6 +8,7 @@ import java.util.ArrayList;
 import net.bbs.BbsDTO;
 import net.utility.DBClose;
 import net.utility.DBOpen;
+import net.utility.Utility;
 
 public class PdsDAO {
 	
@@ -136,6 +137,68 @@ public class PdsDAO {
             DBClose.close(con, pstmt);
         }//end
     }//incrementCnt() end
+	
+	
+	public int delete(int pdsno, String passwd, String saveDir) {
+		int cnt=0; //성공여부를 받는 변수
+		try {
+			
+			//테이블의 행 삭제하기 전에, 삭제하고자 하는 파일명을 가져온다
+			String filename="";
+			PdsDTO oldDTO=read(pdsno);
+			if(oldDTO != null) {
+				filename=oldDTO.getFilename();
+			}//if end
+			
+			con=dbopen.getConnection();
+			sql=new StringBuilder();
+			sql.append(" DELETE FROM tb_pds ");
+			sql.append(" WHERE pdsno=? AND passwd=? ");
+			pstmt=con.prepareStatement(sql.toString());
+			pstmt.setInt(1, pdsno);
+			pstmt.setString(2, passwd);
+			
+			cnt=pstmt.executeUpdate();
+			if(cnt==1) {	//테이블에서 행삭제가 성공했으므로, 첨부했던 파일도 삭제
+				Utility.deleteFile(saveDir, filename);
+			}//if end
+			
+		}catch (Exception e) {
+			System.out.println("삭제 실패 : " + e);
+		}finally {
+			DBClose.close(con, pstmt);
+		}//end
+		return cnt;
+	}//delete() end
+	
+	
+	public int updateProc(PdsDTO dto) {
+        int cnt=0;
+        try {
+            con=dbopen.getConnection();
+        
+            sql=new StringBuilder();
+            sql.append(" UPDATE tb_pds ");
+            sql.append(" SET wname=?, subject=?, filename=?, filesize=? ");
+            sql.append(" WHERE passwd=? AND pdsno=? ");
+            
+            pstmt=con.prepareStatement(sql.toString());
+            pstmt.setString(1, dto.getWname());
+            pstmt.setString(2, dto.getSubject());
+            pstmt.setString(3, dto.getFilename());
+            pstmt.setLong(4, dto.getFilesize());
+            pstmt.setString(5, dto.getPasswd());
+            pstmt.setInt(6, dto.getPdsno());
+            
+            cnt=pstmt.executeUpdate();
+
+        }catch (Exception e) {
+            System.out.println("포토갤러리 수정 실패:"+e);
+        }finally {
+            DBClose.close(con, pstmt);
+        }//end
+        return cnt;
+    }//updateProc() end
 	
 	
 }//class end
