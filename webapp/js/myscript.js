@@ -74,6 +74,7 @@ function searchCheck(){
 	return true;
 }//searchCheck()end
 
+
 function lotto(){
 	
 	let lotto=[];
@@ -92,6 +93,7 @@ function lotto(){
 	
 	alert(lotto);
 }//lotto() end
+
 
 function loginCheck(){ //로그인 유효성 검사 (아이디, 비번)
 	//1)아이디 5~10글자 이내인지 검사
@@ -115,6 +117,7 @@ function loginCheck(){ //로그인 유효성 검사 (아이디, 비번)
     return true;
 	
 }//loginCheck() end
+
 
 function idCheck(){ //아이디 중복확인
 
@@ -143,6 +146,7 @@ function idCheck(){ //아이디 중복확인
 	
 }//idCheck() end
 
+
 function emailCheck() { //이메일 중복확인
 	var popupWidth = 400;
 	var popupHeight = 350;
@@ -159,9 +163,10 @@ function emailCheck() { //이메일 중복확인
 	
 }//emailCheck() end
 
+
 function memberCheck(){ //회원가입 유효성 검사
     //1)아이디 5~10글자 인지?
-	var id=document.getElementById("id").value;
+	let id=document.getElementById("id").value;
 	id=id.trim();
 	if(!(id.length>=5 && id.length<=10)){
 		alert("아이디를 5~10글자 이내로 입력해 주세요");
@@ -170,7 +175,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	}//if end	
 	
     //2)비밀번호 5~10글자 인지?
-    var passwd=document.getElementById("passwd").value;
+    let passwd=document.getElementById("passwd").value;
 	passwd=passwd.trim();
 	if(!(passwd.length>=5 && passwd.length<=10)){
 		alert("비밀번호를 5~10글자 이내로 입력해 주세요");
@@ -179,7 +184,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	}//if end
 	
     //3)비밀번호와 비밀번호확인이 서로 일치하는지?
-	var repasswd=document.getElementById("repasswd").value;
+	let repasswd=document.getElementById("repasswd").value;
 	repasswd=repasswd.trim();
 	if(passwd!=repasswd){
 	    alert("비밀번호 2개를 똑같이 입력해 주세요");
@@ -188,7 +193,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	}//if end
 
     //4)이름 두글자 이상 인지?
-  	var mname=document.getElementById("mname").value;
+  	let mname=document.getElementById("mname").value;
 	mname=mname.trim();
 	if(mname.length<=1){
 	    alert("이름을 두글자 이상 입력해 주세요");
@@ -197,7 +202,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	}//if end 
 
     //5)이메일 5글자 인지?
-	var email=document.getElementById("email").value;
+	let email=document.getElementById("email").value;
 	email=email.trim();
 	if(email.length<5){
 	    alert("이메일을 5글자 이상 입력해 주세요");
@@ -206,7 +211,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	}//if end
 
     //6)직업을 선택했는지?
-	var job=document.getElementById("job").value;
+	let job=document.getElementById("job").value;
 	if(job=="0"){
 	    alert("직업을 선택해 주세요");
 	    return false;
@@ -215,6 +220,7 @@ function memberCheck(){ //회원가입 유효성 검사
 	return true;//서버로 전송
 
 }//memberCheck() end
+
 
 function findIDCheck(){ //아이디/비번 찾기 유효성 검사 
 	
@@ -240,14 +246,15 @@ function findIDCheck(){ //아이디/비번 찾기 유효성 검사
 	
 }//findIDCheck() end
 
+
 function pdsCheck(){	//포토갤러리 유효성 검사
 	//1)이름
-	let wname=document.getElementById("wname").value;
-	wname=wname.trim();
+	let wname=document.getElementById("wname").value;	//이름 가져오기
+	wname=wname.trim();	//좌우 공백 제거하기
 	if(wname.length<2){
 	    alert("이름을 2글자 이상 입력해 주세요");
-	    document.getElementById("wname").focus();
-	    return false;
+	    document.getElementById("wname").focus();	//작성자 칸에 커서 생성
+	    return false;	//전송하지 않음
 	}//if end
 	
 	//2)제목
@@ -281,7 +288,7 @@ function pdsCheck(){	//포토갤러리 유효성 검사
 		let ext=filename.substr(dot+1);		//확장명 : 마지막 . 이후 문자열 자르기
 		ext=ext.toLowerCase();				//확장명을 전부 소문자 치환
 		
-		if(ext=="png" || ext=="jpg" || ext=="gif"){
+		if(ext=="png" || ext=="jpg" || ext=="jpeg" || ext=="gif"){
 			return true;
 		}else{
 			alert("이미지 파일만 업로드 가능합니다")
@@ -291,4 +298,21 @@ function pdsCheck(){	//포토갤러리 유효성 검사
 	
 }//pdsCheck() end
 
+
+function pwCheck2(){
+	let passwd=document.getElementById("passwd").value; 
+    passwd=passwd.trim();
+    if(!(passwd.length>=4 && passwd.length<=15)){
+        alert("비밀번호를 4~15글자 이내로 입력해 주세요");
+        document.getElementById("passwd").focus();
+        return false;
+    }//if end
+    
+    let message="첨부 파일도 삭제됩니다.\n계속 진행할까요?";
+    if(confirm(message)){ //확인true, 취소false
+		return true; //서버로 전송
+	}else{
+		return false
+	}//if end
+}//pwCheck2() end
 
