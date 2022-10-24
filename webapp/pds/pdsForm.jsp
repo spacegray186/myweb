@@ -7,7 +7,7 @@
 <form method="post" action="pdsIns.jsp" enctype="multipart/form-data" onsubmit="return pdsCheck()"><!-- myscript.js -->
 	<table class="table">
 	<tr>
-	    <th>이름</th>
+	    <th>작성자</th>
 	    <td style="text-align: left"><input type="text" name="wname" id="wname" size="20" maxlength="100" required autofocus></td>
 	</tr>
 	<tr>

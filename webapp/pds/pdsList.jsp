@@ -14,7 +14,7 @@
 %>
 		<table class="table table-hover">
 		<thead>
-			<tr class="success">
+			<tr class="info">
 				<th>제목</th>
 				<th>사진</th>
 				<th>조회수</th>

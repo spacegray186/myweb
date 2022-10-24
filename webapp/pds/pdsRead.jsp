@@ -47,11 +47,9 @@
 		</tr>
 		</table>
 		<br>
-		<input type="button" value="답변쓰기" class="btn btn-info"    onclick="location.href='pdsReply.jsp?pdsno=<%=pdsno%>'">
 		<input type="button" value="수정"    class="btn btn-warning" onclick="location.href='pdsUpdate.jsp?pdsno=<%=pdsno%>'">
-<%		if(s_mlevel.equals("A1")){ %>		
-			<input type="button" value="삭제"    class="btn btn-danger"  onclick="location.href='pdsDel.jsp?pdsno=<%=pdsno%>'">		
-<%	    }//if end
+		<input type="button" value="삭제"    class="btn btn-danger"  onclick="location.href='pdsDel.jsp?pdsno=<%=pdsno%>'">		
+<%	    
 	}//if end
 %>
 
