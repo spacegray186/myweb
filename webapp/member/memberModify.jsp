@@ -61,7 +61,7 @@
 		  <td style="text-align: left"><input type="text" name="address2" id="address2" value="<%=dto.getAddress2()%>" size="45"></td>
 		</tr>
 		<tr>  
-		  <th>직업</th>
+		  <th>*직업</th>
 		  <td style="text-align: left"><!-- basic04_web 프로젝트 /sungjukbean/sungjukUpdate.jsp 참조 -->
 		  		<% String job=dto.getJob(); %>
 		        <select name="job"  id="job">

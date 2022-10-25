@@ -32,7 +32,7 @@
         out.println("<p><a href='javascript:history.back()'>[다시시도]</a></p>");
     }else{
         out.println("<script>");
-        out.println("    alert('회원 정보 수정 되었습니다~');");
+        out.println("    alert('회원 정보 수정 되었습니다');");
         out.println("    location.href='loginForm.jsp'");
         out.println("</script>");
     }//if end	
