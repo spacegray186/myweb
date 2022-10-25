@@ -17,7 +17,7 @@
 			<input type="hidden" name="pdsno" value="<%=pdsno%>">
 			<table class="table">
 			<tr>
-			    <th>이름</th>
+			    <th>작성자</th>
 			    <td style="text-align: left"><input type="text" name="wname" id="wname" value="<%=dto.getWname()%>" size="20" maxlength="100" required autofocus></td>
 			</tr>
 			<tr>
